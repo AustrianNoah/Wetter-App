@@ -142,7 +142,7 @@ export function Forecast({ data }: ForecastProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
       {fiveDayForecast.map((day: any, index: number) => (
-        <Card key={index}>
+        <Card key={index} className="bg-card text-card-foreground">
           <CardContent className="p-4 flex flex-col items-center">
             <div className="font-medium mb-2">{day.date}</div>
             {getWeatherIcon(day.icon)}

@@ -6,6 +6,7 @@ import { WeatherDisplay } from "@/components/weather-display"
 import { Forecast } from "@/components/forecast"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState<any>(null)
@@ -24,7 +25,7 @@ export default function Home() {
       )
 
       if (!weatherResponse.ok) {
-        throw new Error("City not found or API error")
+        throw new Error("Stadt nicht gefunden oder API-Fehler")
       }
 
       const weatherData = await weatherResponse.json()
@@ -36,7 +37,7 @@ export default function Home() {
       )
 
       if (!forecastResponse.ok) {
-        throw new Error("Forecast data not available")
+        throw new Error("Vorhersagedaten nicht verfügbar")
       }
 
       const forecastData = await forecastResponse.json()
@@ -51,14 +52,20 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 md:p-24">
-      <h1 className="text-4xl font-bold mb-8">Wetter App</h1>
+    <main className="flex min-h-screen flex-col items-center p-4 md:p-24 bg-background text-foreground">
+      <div className="w-full max-w-3xl flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold">Wetter App</h1>
+        <ThemeToggle />
+      </div>
 
       <div className="w-full max-w-3xl">
         <SearchForm onSearch={handleSearch} isLoading={loading} />
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4" role="alert">
+          <div
+            className="bg-destructive/20 border border-destructive text-destructive px-4 py-3 rounded mt-4"
+            role="alert"
+          >
             <p>{error}</p>
           </div>
         )}

@@ -108,28 +108,28 @@ export function WeatherDisplay({ data }: WeatherDisplayProps) {
       <div className="text-xl capitalize mb-6">{translatedDescription}</div>
 
       <div className="grid grid-cols-2 gap-4 w-full">
-        <Card>
+        <Card className="bg-card text-card-foreground">
           <CardContent className="p-4 flex flex-col items-center">
             <div className="text-sm text-muted-foreground">Gefühlt wie</div>
             <div className="text-xl font-semibold">{feelsLike}°C</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card text-card-foreground">
           <CardContent className="p-4 flex flex-col items-center">
             <div className="text-sm text-muted-foreground">Luftfeuchtigkeit</div>
             <div className="text-xl font-semibold">{humidity}%</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card text-card-foreground">
           <CardContent className="p-4 flex flex-col items-center">
             <div className="text-sm text-muted-foreground">Windgeschwindigkeit</div>
             <div className="text-xl font-semibold">{windSpeed} m/s</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card text-card-foreground">
           <CardContent className="p-4 flex flex-col items-center">
             <div className="text-sm text-muted-foreground">Luftdruck</div>
             <div className="text-xl font-semibold">{data.main.pressure} hPa</div>
