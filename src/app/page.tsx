@@ -43,7 +43,7 @@ export default function Home() {
       const forecastData = await forecastResponse.json()
       setForecastData(forecastData)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Ein unbekannter Fehler ist aufgetreten")
+      setError(err instanceof Error ? err.message : 'Ein unbekannter Fehler ist aufgetreten')
       setWeatherData(null)
       setForecastData(null)
     } finally {
@@ -52,9 +52,9 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 md:p-24 bg-background text-foreground">
-      <div className="w-full max-w-3xl flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">Wetter App</h1>
+    <main className="flex min-h-screen flex-col items-center p-4 sm:p-6 md:p-8 lg:p-12 xl:p-24 bg-background text-foreground">
+      <div className="w-full max-w-3xl flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-8 gap-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center sm:text-left">Wetter App</h1>
         <ThemeToggle />
       </div>
 
@@ -62,21 +62,18 @@ export default function Home() {
         <SearchForm onSearch={handleSearch} isLoading={loading} />
 
         {error && (
-          <div
-            className="bg-destructive/20 border border-destructive text-destructive px-4 py-3 rounded mt-4"
-            role="alert"
-          >
-            <p>{error}</p>
+          <div className="bg-destructive/20 border border-destructive text-destructive px-4 py-3 rounded mt-4" role="alert">
+            <p className="text-sm sm:text-base">{error}</p>
           </div>
         )}
 
         {weatherData && (
-          <Card className="mt-8">
-            <CardContent className="p-6">
+          <Card className="mt-6 sm:mt-8 overflow-hidden">
+            <CardContent className="p-3 sm:p-6">
               <Tabs defaultValue="current">
                 <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="current">Aktuelles Wetter</TabsTrigger>
-                  <TabsTrigger value="forecast">5-Tage Vorhersage</TabsTrigger>
+                  <TabsTrigger value="current" className="text-xs sm:text-sm">Aktuelles Wetter</TabsTrigger>
+                  <TabsTrigger value="forecast" className="text-xs sm:text-sm">5-Tage Vorhersage</TabsTrigger>
                 </TabsList>
                 <TabsContent value="current" className="mt-4">
                   <WeatherDisplay data={weatherData} />
@@ -92,4 +89,3 @@ export default function Home() {
     </main>
   )
 }
-
